@@ -10,12 +10,13 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot">
-        <Border x:Name="Border" CornerRadius="10" Background="Red" Margin="5">
+        <Border x:Name="Border" CornerRadius="10" Background="{Binding BackgroundColor}" Margin="5">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
             <TextBlock x:Name="TextValue"                            
                                Text="0"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center"
+                       Foreground="{Binding ForegroundColor}"/>
              </StackPanel>
         </Border>
 

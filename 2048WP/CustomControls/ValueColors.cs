@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Windows.Media;
 
 namespace _2048WP.CustomControls
 {
-    public class ValueColors
+    public class ValueColors : INotifyPropertyChanged
     {
         public ValueColors()
         {
@@ -28,8 +29,21 @@ namespace _2048WP.CustomControls
         }
         private Dictionary<int, ValueColor> _innerCollection = new Dictionary<int, ValueColor>();
 
+        int _value;
+
         public int Value
-        { get; set; }
+        { 
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+                NotifyPropertyChanged("BackgroundColor");
+                NotifyPropertyChanged("ForegroundColor");
+            }
+        }
 
         public ValueColor GetValueColor(int value)
         {
@@ -51,6 +65,16 @@ namespace _2048WP.CustomControls
             get
             {
                 return new SolidColorBrush(GetValueColor(Value).TextColor);
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

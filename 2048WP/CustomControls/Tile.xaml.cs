@@ -31,9 +31,6 @@ namespace _2048WP.CustomControls
             {
                 _value = value;
                 ValueColors.Value = value;
-
-                Border.Background = ValueColors.BackgroundColor;
-                TextValue.Foreground = ValueColors.ForegroundColor;
                 if (_value == 0)
                 {
                     TextValue.Text = string.Empty;
